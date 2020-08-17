@@ -1,5 +1,6 @@
 package com.victoramaral.convidadosapp.view.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -26,8 +27,8 @@ class MainActivity : AppCompatActivity() {
         initViews()
         initNavigation()
 
-        fab.setOnClickListener { view ->
-
+        fab.setOnClickListener {
+            startActivity(Intent(applicationContext, GuestFormActivity::class.java))
         }
     }
 
