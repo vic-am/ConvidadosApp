@@ -1,10 +1,10 @@
-package com.victoramaral.convidadosapp.viewmodel
+package com.victoramaral.convidadosapp.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class AllGuestsViewModel : ViewModel() {
+class HomeViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"

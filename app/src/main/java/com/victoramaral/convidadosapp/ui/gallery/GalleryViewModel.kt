@@ -1,10 +1,10 @@
-package com.victoramaral.convidadosapp.viewmodel
+package com.victoramaral.convidadosapp.ui.gallery
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class PresentsViewModel : ViewModel() {
+class GalleryViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is gallery Fragment"
