@@ -1,10 +1,10 @@
-package com.victoramaral.convidadosapp.viewmodel
+package com.victoramaral.convidadosapp.ui.slideshow
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class AbsentsViewModel : ViewModel() {
+class SlideshowViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is slideshow Fragment"
