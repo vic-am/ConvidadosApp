@@ -10,5 +10,9 @@ class DatabaseConstants private constructor() {
             const val NAME = "name"
             const val PRESENCE = "presence"
         }
+
+        object ERROR{
+            const val DATABASE_ERROR = "GUEST DATABASE ERROR"
+        }
     }
 }
