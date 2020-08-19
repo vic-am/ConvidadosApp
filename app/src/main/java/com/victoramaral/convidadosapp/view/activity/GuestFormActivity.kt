@@ -3,7 +3,9 @@ package com.victoramaral.convidadosapp.view.activity
 import android.os.Bundle
 import android.view.View
 import android.view.View.OnClickListener
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.victoramaral.convidadosapp.R
 import com.victoramaral.convidadosapp.viewmodel.GuestFormViewModel
@@ -20,19 +22,34 @@ class GuestFormActivity : AppCompatActivity(), OnClickListener {
         viewModel = ViewModelProvider(this).get(GuestFormViewModel::class.java)
 
         setListeners()
-    }
 
-    private fun setListeners() {
-        buttonSave.setOnClickListener(this)
+        observe()
     }
 
     override fun onClick(view: View) {
 
         when (view.id) {
             R.id.buttonSave -> {
+
+                val name = textName.text.toString()
+                val presence = radioPresent.isChecked
+                viewModel.save(name, presence)
                 finish()
             }
         }
+    }
 
+    private fun observe() {
+        viewModel.saveGuest.observe(this, Observer {
+            if (it) {
+                Toast.makeText(applicationContext, "Sucesso", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(applicationContext, "Falha", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun setListeners() {
+        buttonSave.setOnClickListener(this)
     }
 }
