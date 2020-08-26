@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.victoramaral.convidadosapp.R
 import com.victoramaral.convidadosapp.viewmodel.AllGuestsViewModel
@@ -21,12 +22,8 @@ class AllGuestsFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         allGuestsViewModel =
-                ViewModelProviders.of(this).get(AllGuestsViewModel::class.java)
+                ViewModelProvider(this).get(AllGuestsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_all_guests, container, false)
-        val textView: TextView = root.findViewById(R.id.text_all_guests)
-        allGuestsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
         return root
     }
 }
