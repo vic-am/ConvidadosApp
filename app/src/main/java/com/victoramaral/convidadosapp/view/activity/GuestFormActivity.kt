@@ -42,9 +42,17 @@ class GuestFormActivity : AppCompatActivity(), OnClickListener {
     private fun observe() {
         viewModel.saveGuest.observe(this, Observer {
             if (it) {
-                Toast.makeText(applicationContext, "Sucesso", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    applicationContext,
+                    "Sucesso ao salvar o convidado",
+                    Toast.LENGTH_LONG
+                ).show()
             } else {
-                Toast.makeText(applicationContext, "Falha", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    applicationContext,
+                    "Falha ao salvar o convidado",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         })
     }
