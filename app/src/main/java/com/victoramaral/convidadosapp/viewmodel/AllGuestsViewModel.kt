@@ -1,9 +1,21 @@
 package com.victoramaral.convidadosapp.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.victoramaral.convidadosapp.service.model.GuestModel
+import com.victoramaral.convidadosapp.service.repository.GuestRepository
 
-class AllGuestsViewModel : ViewModel() {
+class AllGuestsViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val guestRepository = GuestRepository.getInstance(application.applicationContext)
+
+    private val mutableGuestList = MutableLiveData<List<GuestModel>>()
+    val guestList: LiveData<List<GuestModel>> = mutableGuestList
+
+    fun load() {
+        mutableGuestList.value = guestRepository.getAllGuests()
+    }
 
 }
