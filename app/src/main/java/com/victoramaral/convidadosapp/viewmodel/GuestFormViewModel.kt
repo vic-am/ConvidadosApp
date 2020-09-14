@@ -15,8 +15,20 @@ class GuestFormViewModel(application: Application) : AndroidViewModel(applicatio
     private var mutableSaveGuest = MutableLiveData<Boolean>()
     val saveGuest: LiveData<Boolean> = mutableSaveGuest
 
-    fun save(name: String, presence: Boolean) {
-        val guest = GuestModel(name = name, presence = presence)
-        mutableSaveGuest.value = guestRepository.save(guest)
+    private var mutableGuest = MutableLiveData<GuestModel>()
+    val guest: LiveData<GuestModel> = mutableGuest
+
+    fun save(guestId: Int, name: String, presence: Boolean) {
+        val guest = GuestModel(guestId, name, presence)
+
+        if (guestId == 0) {
+            mutableSaveGuest.value = guestRepository.save(guest)
+        } else {
+            mutableSaveGuest.value = guestRepository.update(guest)
+        }
+    }
+
+    fun load(id: Int) {
+        mutableGuest.value = guestRepository.getGuestById(id)
     }
 }
