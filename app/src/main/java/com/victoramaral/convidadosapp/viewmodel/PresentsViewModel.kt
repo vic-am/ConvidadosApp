@@ -1,13 +1,25 @@
 package com.victoramaral.convidadosapp.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.victoramaral.convidadosapp.service.model.GuestModel
+import com.victoramaral.convidadosapp.service.repository.GuestRepository
 
-class PresentsViewModel : ViewModel() {
+class PresentsViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is gallery Fragment"
+    private val context = application.applicationContext
+    private val repository = GuestRepository.getInstance(context)
+
+    private val mutableGuestList = MutableLiveData<List<GuestModel>>()
+    val guestList: LiveData<List<GuestModel>> = mutableGuestList
+
+    fun load() {
+        mutableGuestList.value = repository.getPresentsGuests()
     }
-    val text: LiveData<String> = _text
+
+    fun delete(id: Int) {
+        repository.delete(id)
+    }
 }
